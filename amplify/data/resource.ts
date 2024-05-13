@@ -7,11 +7,21 @@ specifies that any user authenticated via an API key can "create", "read",
 "update", and "delete" any "Todo" records.
 =========================================================================*/
 const schema = a.schema({
-  Todo: a
+  Property: a
     .model({
-      content: a.string(),
+      name: a.string(), // Nombre de la propiedad
+      location: a.string(), // Dirección de la propiedad
+      country: a.string(), // País donde se encuentra la propiedad
+      city: a.string(), // Ciudad o localidad
+      bathrooms: a.integer(), // Número de baños
+      bedrooms: a.integer(), // Número de dormitorios
+      size: a.integer(), // Tamaño de la propiedad en metros cuadrados
+      description: a.string(), // Descripción detallada de la propiedad
+      price: a.integer(), // Precio de la propiedad
+      images: a.string(), // Lista de URLs de imágenes
+      status: a.enum(["AVAILABLE", "SOLD", "PENDING", "UNLISTED", "RENTED"]), // Estado de la propiedad
     })
-    .authorization((allow) => [allow.publicApiKey()]),
+    .authorization((allow) => [allow.publicApiKey()]), // Autorización con clave API pública
 });
 
 export type Schema = ClientSchema<typeof schema>;
